@@ -27,7 +27,18 @@ function saveRemote(name, hometown) {
 }
 
 function loadRemote() {
-  $.get("load.php",{},function(data) { console.log(data); });
+  $.get("load.php",{},function(data) { 
+    data = JSON.parse(data);
+    console.log(data);
+    console.log("row by row:");
+  var html = "";
+  for (var i in data) {
+    console.log(data[i]);
+    if (data[i])
+      html += "<li>" + data[i] + "</li>";
+  }
+  $("#guestlist").html(html);
+  });
 }
 
 function clearStorageGB() {
